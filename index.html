@@ -5,103 +5,122 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Gavin OS</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
 body{background:#17131f;color:#fff;font-family:Arial,Helvetica,sans-serif}
-.screen{display:none;width:100vw;height:100vh;padding:45px 65px}.on{display:block}
-.brand{font-size:30px;font-weight:800}.brand span{opacity:.5;font-weight:400}.head{display:flex;justify-content:space-between}
-h1{font-size:42px;font-weight:400;margin:60px 0 25px}
-.apps{display:flex;gap:20px;flex-wrap:wrap;max-width:1080px}
-.app{width:175px;height:130px;background:#292332;border:3px solid transparent;border-radius:14px;padding:20px}
-.app.sel{border-color:white;transform:scale(1.04)}.icon{font-size:38px}.name{margin-top:10px;font-size:18px}
-.list{width:500px}.item{padding:14px;border-radius:6px}.item.sel{background:white;color:#222}
-.row{max-width:700px;background:#292332;border:3px solid transparent;border-radius:10px;padding:17px 20px;margin:10px 0;display:flex;justify-content:space-between}
-.row.sel{border-color:white}.sw{display:inline-block;width:90px;height:65px;border:4px solid transparent;border-radius:10px;margin:7px}
-.sw.sel{border-color:white;box-shadow:0 0 0 2px #fff}.foot{position:absolute;bottom:25px;opacity:.55}
+.screen{display:none;width:100vw;height:100vh;padding:38px 45px}.on{display:block}
+.brand{font-size:29px;font-weight:800}.brand span{opacity:.5;font-weight:400}
+.head{display:flex;justify-content:space-between;align-items:center}
+.clock{opacity:.7}
+.layout{display:grid;grid-template-columns:190px 1fr;gap:35px;height:calc(100vh - 100px);margin-top:30px}
+.rail{padding-top:5px}
+.nav{padding:15px 18px;margin:5px 0;border-radius:5px;color:#ddd;font-size:19px}
+.nav.sel{background:#fff;color:#17131f;font-weight:bold}
+.content{overflow:hidden}
+.hero{background:linear-gradient(100deg,#332344,#201928);border-radius:8px;padding:28px 32px;height:155px;margin-bottom:25px}
+.hero h1{font-size:34px;margin:0 0 8px;font-weight:500}.hero p{margin:0;opacity:.7}
+.section{font-size:22px;margin:20px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:16px;max-width:1050px}
+.app{height:125px;background:#292332;border:3px solid transparent;border-radius:6px;padding:18px;transition:.12s}
+.app.sel{border-color:#fff;transform:scale(1.035);box-shadow:0 4px 18px #0008}
+.icon{font-size:37px}.name{margin-top:12px;font-size:17px}
+.foot{position:absolute;bottom:22px;left:45px;opacity:.45;font-size:14px}
+.list{width:500px}.item{padding:14px;border-radius:6px}.item.sel{background:#fff;color:#222}
+.row{max-width:700px;background:#292332;border:3px solid transparent;border-radius:8px;padding:17px 20px;margin:10px 0;display:flex;justify-content:space-between}
+.row.sel{border-color:#fff}
+.sw{display:inline-block;width:90px;height:65px;border:4px solid transparent;border-radius:8px;margin:7px}.sw.sel{border-color:#fff}
 #loading,#welcome{background:#000;padding:0;align-items:center;justify-content:center;flex-direction:column}
 #loading.on,#welcome.on{display:flex}.barbox{width:min(520px,75vw);height:14px;border:2px solid #fff;border-radius:20px;overflow:hidden}
 #bar{height:100%;width:0;background:#fff}.pct{margin-top:12px;opacity:.7}
-#welcomeText{font-size:clamp(28px,5vw,64px);opacity:0;transition:opacity 2.3s ease}
+#welcomeText{font-size:clamp(28px,5vw,64px);opacity:0;transition:opacity 2.3s}
 .warning{color:#ff3b30;font-weight:700;font-size:15px;max-width:760px;margin:15px auto 0;text-align:center}
 </style>
 </head>
 <body>
 
-<section id="loading" class="screen on">
- <div>Gavin OS</div><div class="barbox"><div id="bar"></div></div><div id="pct" class="pct">0%</div>
-</section>
+<section id="loading" class="screen on"><div>Gavin OS</div><div class="barbox"><div id="bar"></div></div><div id="pct" class="pct">0%</div></section>
 <section id="welcome" class="screen"><div id="welcomeText">Welcome to Gavin OS</div></section>
 
 <section id="setup" class="screen">
- <div class="brand">GAVIN OS <span>• Language</span></div>
- <div style="text-align:center;margin-top:12vh">
-  <h1 style="margin-bottom:20px">Let's get started</h1>
-  <div class="warning">Touch controls are not supported yet. On iPad or phone, use a connected mouse/keyboard or the Gavin OS Remote.</div>
-  <div id="langs" class="list" style="margin:28px auto 0"></div>
- </div>
+<div class="brand">GAVIN OS <span>• Language</span></div>
+<div style="text-align:center;margin-top:12vh"><h1 style="font-size:42px;font-weight:400">Let's get started</h1>
+<div class="warning">Touch controls are not supported yet. On iPad or phone, use a connected mouse/keyboard or the Gavin OS Remote.</div>
+<div id="langs" class="list" style="margin:28px auto 0"></div></div>
 </section>
 
 <section id="home" class="screen">
- <div class="head"><div class="brand">GAVIN OS <span>Home</span></div><div id="clock"></div></div>
- <h1 id="homeTitle">Home</h1><div id="apps" class="apps"></div>
- <div class="foot">← → Navigate • Enter Open • Home = Home</div>
+<div class="head"><div class="brand">GAVIN OS <span>Home</span></div><div id="clock" class="clock"></div></div>
+<div class="layout">
+<aside class="rail" id="rail"><div class="nav sel">Home</div><div class="nav">Search</div><div class="nav">Settings</div><div class="nav">FOLLOW ME</div></aside>
+<main class="content">
+<div class="hero"><h1 id="heroTitle">Welcome to Gavin OS</h1><p>Your apps, your way.</p></div>
+<div class="section">Apps</div><div id="apps" class="grid"></div>
+</main>
+</div>
+<div class="foot">← → ↑ ↓ Navigate • Enter Open • Home = Home</div>
 </section>
 
-<section id="settings" class="screen">
- <div class="brand">GAVIN OS <span>Settings</span></div><h1>Settings</h1>
- <div id="settingsList"></div><div class="foot">↑ ↓ Select • Enter Open • Home = Home</div>
+
+<section id="search" class="screen">
+ <div class="brand">GAVIN OS <span>Search</span></div>
+ <h1>Search</h1>
+ <div style="max-width:850px">
+   <input id="searchInput" autofocus autocomplete="off" placeholder="Type an app name..."
+     style="width:100%;font-size:28px;padding:16px 18px;border-radius:8px;border:3px solid #fff;background:#292332;color:#fff;outline:none">
+   <div id="searchResults" class="grid" style="margin-top:25px"></div>
+ </div>
+ <div class="foot">Type to search • ↑ ↓ Select • Enter Open • Delete = Back</div>
 </section>
 
-<section id="language" class="screen">
- <div class="brand">GAVIN OS <span>Language</span></div><h1>Choose language</h1><div id="languageList" class="list"></div>
-</section>
-
-<section id="wallpaper" class="screen">
- <div class="brand">GAVIN OS <span>Wallpaper</span></div><h1>Wallpaper</h1><div id="colors"></div>
-</section>
-
-<section id="music" class="screen">
- <div class="brand">GAVIN OS <span>Background music</span></div><h1>Background music</h1>
- <div id="musicList" class="list"></div><div class="foot">Enter = select • Home = Home</div>
-</section>
+<section id="settings" class="screen"><div class="brand">GAVIN OS <span>Settings</span></div><h1>Settings</h1><div id="settingsList"></div><div class="foot">↑ ↓ Select • Enter Open • Home = Home</div></section>
+<section id="language" class="screen"><div class="brand">GAVIN OS <span>Language</span></div><h1>Choose language</h1><div id="languageList" class="list"></div></section>
+<section id="wallpaper" class="screen"><div class="brand">GAVIN OS <span>Wallpaper</span></div><h1>Wallpaper</h1><div id="colors"></div></section>
+<section id="music" class="screen"><div class="brand">GAVIN OS <span>Background music</span></div><h1>Background music</h1><div id="musicList" class="list"></div></section>
 
 <script>
-const L=[
- ["English","Home","Settings","Language","Wallpaper","Background music"],
- ["Español","Inicio","Configuración","Idioma","Fondo","Música de fondo"],
- ["Français","Accueil","Paramètres","Langue","Fond","Musique de fond"],
- ["Deutsch","Startseite","Einstellungen","Sprache","Hintergrund","Hintergrundmusik"]
-];
-const C=[
- ["Purple","#17131f"],["Red","#241010"],["Blue","#0d1726"],["Green","#0d2117"],
- ["Orange","#26170d"],["Pink","#24101d"],["Teal","#0b2020"],["Dark","#090909"],["Yellow","#211d08"]
-];
+const L=[["English","Home","Settings","Language","Wallpaper","Background music"],["Español","Inicio","Configuración","Idioma","Fondo","Música de fondo"],["Français","Accueil","Paramètres","Langue","Fond","Musique de fond"],["Deutsch","Startseite","Einstellungen","Sprache","Hintergrund","Hintergrundmusik"]];
+const C=[["Purple","#17131f"],["Red","#241010"],["Blue","#0d1726"],["Green","#0d2117"],["Orange","#26170d"],["Pink","#24101d"],["Teal","#0b2020"],["Dark","#090909"],["Yellow","#211d08"]];
 const M=["Off","Retro Arcade","Rainy Pixel","Classic TV","Night Drive"];
-let li=0,ai=0,si=0,ci=0,mi=0,screen="loading";
+const apps=[
+["▶️","YouTube","https://www.youtube.com/"],["🎵","Spotify","https://open.spotify.com/"],["🌐","Google","https://www.google.com/"],["💬","Reddit","https://www.reddit.com/"],
+["🎮","Roblox","https://www.roblox.com/"],["🎬","Netflix","https://www.netflix.com/"],["📷","Instagram","https://www.instagram.com/"],["🎵","TikTok","https://www.tiktok.com/"],
+["🛒","Store",""],["🖼️","Photos",""],["🎮","Games",""],["⚙️","Settings",""]
+];
 let lang=Number(localStorage.gavinLang||0),color=Number(localStorage.gavinColor||0),music=Number(localStorage.gavinMusic||0);
+let ai=0,si=0,li=0,ci=color,mi=music,screen="loading",railIndex=0,focus="apps",searchIndex=0;
 
 function S(x){document.querySelectorAll(".screen").forEach(e=>e.classList.remove("on"));document.getElementById(x).classList.add("on");screen=x}
+function home(){S("home");focus="apps";ai=0;railIndex=0;draw()}
+function H(a,i){a.forEach((e,n)=>e.classList.toggle("sel",n===i))}
 function draw(){
  document.body.style.background=C[color][1];
  document.getElementById("langs").innerHTML=L.map((x,i)=>`<div class="item ${i===li?"sel":""}">${x[0]}</div>`).join("");
  document.getElementById("languageList").innerHTML=L.map((x,i)=>`<div class="item ${i===li?"sel":""}">${x[0]}</div>`).join("");
- document.getElementById("homeTitle").textContent=L[lang][1];
-
- const names=["▶️ YouTube","🎵 Spotify","🌐 Google","💬 Reddit","🎮 Roblox","🎬 Netflix","📷 Instagram","🎵 TikTok","⚙️ "+L[lang][2]];
- document.getElementById("apps").innerHTML=names.map((x,i)=>{
-   let p=x.indexOf(" ");return `<div class="app ${i===ai?"sel":""}"><div class="icon">${x.slice(0,p)}</div><div class="name">${x.slice(p+1)}</div></div>`;
- }).join("");
-
  document.getElementById("settingsList").innerHTML=[
-  [L[lang][3],L[lang][0]],[L[lang][4],C[color][0]],[L[lang][5],M[music]]
+ [L[lang][3],L[lang][0]],[L[lang][4],C[color][0]],[L[lang][5],M[music]]
  ].map((x,i)=>`<div class="row ${i===si?"sel":""}"><span>${x[0]}</span><span>${x[1]}</span></div>`).join("");
-
  document.getElementById("colors").innerHTML=C.map((x,i)=>`<span class="sw ${i===ci?"sel":""}" style="background:${x[1]}"></span>`).join("");
  document.getElementById("musicList").innerHTML=M.map((x,i)=>`<div class="item ${i===mi?"sel":""}">${x}</div>`).join("");
+ document.getElementById("apps").innerHTML=apps.map((x,i)=>`<div class="app ${i===ai&&focus==="apps"?"sel":""}"><div class="icon">${x[0]}</div><div class="name">${x[1]}</div></div>`).join("");
+ const q=(document.getElementById("searchInput")?.value||"").toLowerCase().trim();
+ const results=apps.filter(x=>x[1].toLowerCase().includes(q));
+ if(document.getElementById("searchResults")){
+   document.getElementById("searchResults").innerHTML=results.length
+    ? results.map((x,i)=>`<div class="app ${i===searchIndex?"sel":""}"><div class="icon">${x[0]}</div><div class="name">${x[1]}</div></div>`).join("")
+    : '<div style="opacity:.65;padding:20px">No Gavin OS app found.</div>';
+ }
+
+ document.querySelectorAll(".nav").forEach((x,i)=>x.classList.toggle("sel",i===railIndex&&focus==="rail"));
 }
-function home(){S("home");ai=0;draw()}
-function openApp(){
- const urls=["https://www.youtube.com/","https://open.spotify.com/","https://www.google.com/","https://www.reddit.com/","https://www.roblox.com/","https://www.netflix.com/","https://www.instagram.com/","https://www.tiktok.com/"];
- if(ai<8)window.open(urls[ai],"_blank");else{si=0;S("settings");draw()}
+function launchApp(item){
+ if(item[2])window.open(item[2],"_blank");
+ else if(item[1]==="Settings"){si=0;S("settings");draw()}
+}
+function openApp(){launchApp(apps[ai])}
+function openSearchResult(){
+ const q=(document.getElementById("searchInput")?.value||"").toLowerCase().trim();
+ const results=apps.filter(x=>x[1].toLowerCase().includes(q));
+ if(results[searchIndex]) launchApp(results[searchIndex]);
 }
 document.onkeydown=e=>{
  if(e.key==="Home"){e.preventDefault();home();return}
@@ -111,39 +130,65 @@ document.onkeydown=e=>{
   if(e.key==="Enter"){lang=li;localStorage.gavinLang=lang;home()}draw();return;
  }
  if(screen==="home"){
-  if(e.key==="ArrowRight")ai=Math.min(8,ai+1);if(e.key==="ArrowLeft")ai=Math.max(0,ai-1);
-  if(e.key==="ArrowDown")ai=Math.min(8,ai+3);if(e.key==="ArrowUp")ai=Math.max(0,ai-3);
-  if(e.key==="Enter")openApp();draw();return;
+  if(focus==="apps"){
+    const col=ai%4, row=Math.floor(ai/4);
+    if(e.key==="ArrowRight") ai=Math.min(apps.length-1,ai+1);
+    else if(e.key==="ArrowLeft"){
+      if(col===0){focus="rail";railIndex=Math.min(3,row)}
+      else ai=Math.max(0,ai-1);
+    } else if(e.key==="ArrowDown") ai=Math.min(apps.length-1,ai+4);
+    else if(e.key==="ArrowUp"){
+      if(row===0){focus="rail";railIndex=Math.min(3,col)}
+      else ai=Math.max(0,ai-4);
+    } else if(e.key==="Enter") openApp();
+  } else {
+    if(e.key==="ArrowDown") railIndex=Math.min(3,railIndex+1);
+    else if(e.key==="ArrowUp") railIndex=Math.max(0,railIndex-1);
+    else if(e.key==="ArrowRight" || e.key==="Enter"){
+      if(railIndex===0){focus="apps";ai=0;}
+      else if(railIndex===1){searchIndex=0;S("search");setTimeout(()=>document.getElementById("searchInput").focus(),0);}
+      else if(railIndex===2){si=0;S("settings");}
+      else if(railIndex===3){window.open("https://www.tiktok.com/@funkojamesrants","_blank");}
+    }
+  }
+  draw();return;
+ }
+ if(screen==="search"){
+  if(e.key==="Delete" || e.key==="Escape"){home();return;}
+  if(e.key==="ArrowDown"){searchIndex++;draw();return;}
+  if(e.key==="ArrowUp"){searchIndex=Math.max(0,searchIndex-1);draw();return;}
+  if(e.key==="Enter"){openSearchResult();return;}
+  return;
  }
  if(screen==="settings"){
-  if(e.key==="ArrowDown")si=Math.min(2,si+1);if(e.key==="ArrowUp")si=Math.max(0,si-1);
-  if(e.key==="Enter"){if(si===0){li=lang;S("language")}else if(si===1){ci=color;S("wallpaper")}else{mi=music;S("music")}}draw();return;
+  if(e.key==="Delete" || e.key==="Escape" || e.key==="Backspace"){home();return;}
+  if(e.key==="ArrowDown")si=Math.min(2,si+1);
+  else if(e.key==="ArrowUp")si=Math.max(0,si-1);
+  else if(e.key==="Enter"){
+    if(si===0){li=lang;S("language");}
+    else if(si===1){ci=color;S("wallpaper");}
+    else if(si===2){mi=music;S("music");}
+  }
+  draw();return;
  }
  if(screen==="language"){
+  if(e.key==="Delete" || e.key==="Escape" || e.key==="Backspace"){S("settings");draw();return;}
   if(e.key==="ArrowDown")li=Math.min(3,li+1);if(e.key==="ArrowUp")li=Math.max(0,li-1);
   if(e.key==="Enter"){lang=li;localStorage.gavinLang=lang;S("settings")}draw();return;
  }
  if(screen==="wallpaper"){
+  if(e.key==="Delete" || e.key==="Escape" || e.key==="Backspace"){S("settings");draw();return;}
   if(e.key==="ArrowRight")ci=Math.min(C.length-1,ci+1);if(e.key==="ArrowLeft")ci=Math.max(0,ci-1);
   if(e.key==="Enter"){color=ci;localStorage.gavinColor=color}draw();return;
  }
  if(screen==="music"){
+  if(e.key==="Delete" || e.key==="Escape" || e.key==="Backspace"){S("settings");draw();return;}
   if(e.key==="ArrowDown")mi=Math.min(M.length-1,mi+1);if(e.key==="ArrowUp")mi=Math.max(0,mi-1);
   if(e.key==="Enter"){music=mi;localStorage.gavinMusic=music}draw();return;
  }
 };
-
-let p=0;
-const timer=setInterval(()=>{
- p=Math.min(100,p+25);bar.style.width=p+"%";pct.textContent=p+"%";
- if(p===100){
-  clearInterval(timer);
-  setTimeout(()=>{
-   S("welcome");requestAnimationFrame(()=>welcomeText.style.opacity="1");
-   setTimeout(()=>{S("setup");draw()},2800);
-  },120);
- }
-},90);
+let p=0;const timer=setInterval(()=>{p=Math.min(100,p+25);bar.style.width=p+"%";pct.textContent=p+"%";if(p===100){clearInterval(timer);setTimeout(()=>{S("welcome");requestAnimationFrame(()=>welcomeText.style.opacity="1");setTimeout(()=>{S("setup");draw()},2800)},120)}},90);
+document.addEventListener("input",e=>{if(e.target&&e.target.id==="searchInput"){searchIndex=0;draw()}});
 setInterval(()=>clock.textContent=new Date().toLocaleTimeString([],{hour:"numeric",minute:"2-digit"}),1000);
 draw();
 </script>
