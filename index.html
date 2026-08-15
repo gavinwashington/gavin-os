@@ -12,16 +12,16 @@ body{background:#17131f;color:#fff;font-family:Arial,Helvetica,sans-serif}
 .brand{font-size:29px;font-weight:800}.brand span{opacity:.5;font-weight:400}
 .head{display:flex;justify-content:space-between;align-items:center}
 .clock{opacity:.7}
-.layout{display:grid;grid-template-columns:190px 1fr;gap:35px;height:calc(100vh - 100px);margin-top:30px}
+.layout{display:grid;grid-template-columns:165px 1fr;gap:28px;height:calc(100vh - 100px);margin-top:22px}
 .rail{padding-top:5px}
-.nav{padding:15px 18px;margin:5px 0;border-radius:5px;color:#ddd;font-size:19px}
+.nav{padding:10px 14px;margin:3px 0;border-radius:2px;color:#ddd;font-size:16px}
 .nav.sel{background:#fff;color:#17131f;font-weight:bold}
 .content{overflow:hidden}
-.hero{background:linear-gradient(100deg,#332344,#201928);border-radius:8px;padding:28px 32px;height:155px;margin-bottom:25px}
+.hero{background:linear-gradient(100deg,#332344,#201928);border-radius:4px;padding:22px 28px;height:125px;margin-bottom:18px}
 .hero h1{font-size:34px;margin:0 0 8px;font-weight:500}.hero p{margin:0;opacity:.7}
-.section{font-size:22px;margin:20px 0 12px}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:16px;max-width:1050px}
-.app{height:125px;background:#292332;border:3px solid transparent;border-radius:6px;padding:18px;transition:.12s}
+.section{font-size:19px;margin:12px 0 9px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:10px;max-width:1050px}
+.app{height:105px;background:#292332;border:3px solid transparent;border-radius:2px;padding:14px;transition:.12s}
 .app.sel{border-color:#fff;transform:scale(1.035);box-shadow:0 4px 18px #0008}
 .icon{font-size:37px}.name{margin-top:12px;font-size:17px}
 .foot{position:absolute;bottom:22px;left:45px;opacity:.45;font-size:14px}
@@ -42,19 +42,19 @@ body{background:#17131f;color:#fff;font-family:Arial,Helvetica,sans-serif}
 <section id="welcome" class="screen"><div id="welcomeText">Welcome to Gavin OS</div></section>
 
 <section id="setup" class="screen">
-<div class="brand">GAVIN OS <span>• Language</span></div>
-<div style="text-align:center;margin-top:12vh"><h1 style="font-size:42px;font-weight:400">Let's get started</h1>
+<div class="brand">GAVIN OS <span id="setupLabel">• Language</span></div>
+<div style="text-align:center;margin-top:12vh"><h1 id="startTitle" style="font-size:42px;font-weight:400">Let's get started</h1>
 <div class="warning">Touch controls are not supported yet. On iPad or phone, use a connected mouse/keyboard or the Gavin OS Remote.</div>
 <div id="langs" class="list" style="margin:28px auto 0"></div></div>
 </section>
 
 <section id="home" class="screen">
-<div class="head"><div class="brand">GAVIN OS <span>Home</span></div><div id="clock" class="clock"></div></div>
+<div class="head"><div class="brand">GAVIN OS <span id="homeLabel">Home</span></div><div style="display:flex;flex-direction:column;align-items:flex-end;line-height:1.2"><div id="day" class="clock"></div><div id="clock" class="clock"></div></div></div>
 <div class="layout">
-<aside class="rail" id="rail"><div class="nav sel">Home</div><div class="nav">Search</div><div class="nav">Settings</div><div class="nav">FOLLOW ME</div></aside>
+<aside class="rail" id="rail"><div class="nav sel" id="navHome">Home</div><div class="nav" id="navSearch">Search</div><div class="nav" id="navSettings">Settings</div><div class="nav" id="navFollow">FOLLOW ME</div></aside>
 <main class="content">
-<div class="hero"><h1 id="heroTitle">Welcome to Gavin OS</h1><p>Your apps, your way.</p></div>
-<div class="section">Apps</div><div id="apps" class="grid"></div>
+<div class="hero"><h1 id="heroTitle">Welcome to Gavin OS</h1><p id="heroSub">Your apps, your way.</p></div>
+<div class="section" id="appsTitle">My Apps</div><div id="apps" class="grid"></div>
 </main>
 </div>
 <div class="foot">← → ↑ ↓ Navigate • Enter Open • Home = Home</div>
@@ -72,10 +72,10 @@ body{background:#17131f;color:#fff;font-family:Arial,Helvetica,sans-serif}
  <div class="foot">Type to search • ↑ ↓ Select • Enter Open • Delete = Back</div>
 </section>
 
-<section id="settings" class="screen"><div class="brand">GAVIN OS <span>Settings</span></div><h1>Settings</h1><div id="settingsList"></div><div class="foot">↑ ↓ Select • Enter Open • Home = Home</div></section>
-<section id="language" class="screen"><div class="brand">GAVIN OS <span>Language</span></div><h1>Choose language</h1><div id="languageList" class="list"></div></section>
-<section id="wallpaper" class="screen"><div class="brand">GAVIN OS <span>Wallpaper</span></div><h1>Wallpaper</h1><div id="colors"></div></section>
-<section id="music" class="screen"><div class="brand">GAVIN OS <span>Background music</span></div><h1>Background music</h1><div id="musicList" class="list"></div></section>
+<section id="settings" class="screen"><div class="brand">GAVIN OS <span id="settingsLabel">Settings</span></div><h1 id="settingsTitle">Settings</h1><div id="settingsList"></div><div class="foot">↑ ↓ Select • Enter Open • Home = Home</div></section>
+<section id="language" class="screen"><div class="brand">GAVIN OS <span id="languageLabel">Language</span></div><h1 id="languageTitle">Choose language</h1><div id="languageList" class="list"></div></section>
+<section id="wallpaper" class="screen"><div class="brand">GAVIN OS <span id="wallpaperLabel">Wallpaper</span></div><h1 id="wallpaperTitle">Wallpaper</h1><div id="colors"></div></section>
+<section id="music" class="screen"><div class="brand">GAVIN OS <span id="musicLabel">Background music</span></div><h1 id="musicTitle">Background music</h1><div id="musicList" class="list"></div></section>
 
 <script>
 const L=[["English","Home","Settings","Language","Wallpaper","Background music"],["Español","Inicio","Configuración","Idioma","Fondo","Música de fondo"],["Français","Accueil","Paramètres","Langue","Fond","Musique de fond"],["Deutsch","Startseite","Einstellungen","Sprache","Hintergrund","Hintergrundmusik"]];
@@ -84,7 +84,7 @@ const M=["Off","Retro Arcade","Rainy Pixel","Classic TV","Night Drive"];
 const apps=[
 ["▶️","YouTube","https://www.youtube.com/"],["🎵","Spotify","https://open.spotify.com/"],["🌐","Google","https://www.google.com/"],["💬","Reddit","https://www.reddit.com/"],
 ["🎮","Roblox","https://www.roblox.com/"],["🎬","Netflix","https://www.netflix.com/"],["📷","Instagram","https://www.instagram.com/"],["🎵","TikTok","https://www.tiktok.com/"],
-["🛒","Store",""],["🖼️","Photos",""],["🎮","Games",""],["⚙️","Settings",""]
+["🛒","Store","https://www.walmart.com/"],["🎮","Games",""],["⚙️","Settings",""]
 ];
 let lang=Number(localStorage.gavinLang||0),color=Number(localStorage.gavinColor||0),music=Number(localStorage.gavinMusic||0);
 let ai=0,si=0,li=0,ci=color,mi=music,screen="loading",railIndex=0,focus="apps",searchIndex=0;
@@ -92,8 +92,34 @@ let ai=0,si=0,li=0,ci=color,mi=music,screen="loading",railIndex=0,focus="apps",s
 function S(x){document.querySelectorAll(".screen").forEach(e=>e.classList.remove("on"));document.getElementById(x).classList.add("on");screen=x}
 function home(){S("home");focus="apps";ai=0;railIndex=0;draw()}
 function H(a,i){a.forEach((e,n)=>e.classList.toggle("sel",n===i))}
+const UI=[
+ {start:"Let's get started",home:"Home",search:"Search",settings:"Settings",follow:"FOLLOW ME",welcome:"Welcome to Gavin OS",sub:"Your apps, your way.",apps:"My Apps",choose:"Choose language",wallpaper:"Wallpaper",music:"Background music",searchHint:"Type an app name..."},
+ {start:"Empecemos",home:"Inicio",search:"Buscar",settings:"Configuración",follow:"SÍGUEME",welcome:"Bienvenido a Gavin OS",sub:"Tus aplicaciones, a tu manera.",apps:"Mis aplicaciones",choose:"Elegir idioma",wallpaper:"Fondo",music:"Música de fondo",searchHint:"Escribe el nombre de una aplicación..."},
+ {start:"Commençons",home:"Accueil",search:"Recherche",settings:"Paramètres",follow:"SUIVEZ-MOI",welcome:"Bienvenue sur Gavin OS",sub:"Vos applications, à votre façon.",apps:"Mes applications",choose:"Choisir la langue",wallpaper:"Fond",music:"Musique de fond",searchHint:"Saisissez le nom d'une application..."},
+ {start:"Los geht's",home:"Startseite",search:"Suche",settings:"Einstellungen",follow:"FOLGE MIR",welcome:"Willkommen bei Gavin OS",sub:"Deine Apps, deine Art.",apps:"Meine Apps",choose:"Sprache auswählen",wallpaper:"Hintergrund",music:"Hintergrundmusik",searchHint:"App-Namen eingeben..."}
+];
 function draw(){
+ const u=UI[lang]||UI[0];
  document.body.style.background=C[color][1];
+ if(document.getElementById("setupLabel"))setupLabel.textContent="• "+L[lang][3];
+ if(document.getElementById("startTitle"))startTitle.textContent=u.start;
+ if(document.getElementById("homeLabel"))homeLabel.textContent=u.home;
+ if(document.getElementById("navHome"))navHome.textContent=u.home;
+ if(document.getElementById("navSearch"))navSearch.textContent=u.search;
+ if(document.getElementById("navSettings"))navSettings.textContent=u.settings;
+ if(document.getElementById("navFollow"))navFollow.textContent=u.follow;
+ if(document.getElementById("heroTitle"))heroTitle.textContent=u.welcome;
+ if(document.getElementById("heroSub"))heroSub.textContent=u.sub;
+ if(document.getElementById("appsTitle"))appsTitle.textContent=u.apps;
+ if(document.getElementById("settingsLabel"))settingsLabel.textContent=u.settings;
+ if(document.getElementById("settingsTitle"))settingsTitle.textContent=u.settings;
+ if(document.getElementById("languageLabel"))languageLabel.textContent=L[lang][3];
+ if(document.getElementById("languageTitle"))languageTitle.textContent=u.choose;
+ if(document.getElementById("wallpaperLabel"))wallpaperLabel.textContent=L[lang][4];
+ if(document.getElementById("wallpaperTitle"))wallpaperTitle.textContent=u.wallpaper;
+ if(document.getElementById("musicLabel"))musicLabel.textContent=L[lang][5];
+ if(document.getElementById("musicTitle"))musicTitle.textContent=u.music;
+ if(document.getElementById("searchInput"))searchInput.placeholder=u.searchHint;
  document.getElementById("langs").innerHTML=L.map((x,i)=>`<div class="item ${i===li?"sel":""}">${x[0]}</div>`).join("");
  document.getElementById("languageList").innerHTML=L.map((x,i)=>`<div class="item ${i===li?"sel":""}">${x[0]}</div>`).join("");
  document.getElementById("settingsList").innerHTML=[
@@ -122,6 +148,16 @@ function openSearchResult(){
  const results=apps.filter(x=>x[1].toLowerCase().includes(q));
  if(results[searchIndex]) launchApp(results[searchIndex]);
 }
+document.addEventListener("click",e=>{
+ const item=e.target.closest("#langs .item, #languageList .item");
+ if(!item)return;
+ const list=item.parentElement;
+ const i=[...list.children].indexOf(item);
+ if(i<0)return;
+ li=i;
+ if(list.id==="langs"){lang=li;localStorage.gavinLang=lang;home();}
+ else {lang=li;localStorage.gavinLang=lang;S("settings");draw();}
+});
 document.onkeydown=e=>{
  if(e.key==="Home"){e.preventDefault();home();return}
  if(screen==="loading"||screen==="welcome")return;
@@ -189,7 +225,13 @@ document.onkeydown=e=>{
 };
 let p=0;const timer=setInterval(()=>{p=Math.min(100,p+25);bar.style.width=p+"%";pct.textContent=p+"%";if(p===100){clearInterval(timer);setTimeout(()=>{S("welcome");requestAnimationFrame(()=>welcomeText.style.opacity="1");setTimeout(()=>{S("setup");draw()},2800)},120)}},90);
 document.addEventListener("input",e=>{if(e.target&&e.target.id==="searchInput"){searchIndex=0;draw()}});
-setInterval(()=>clock.textContent=new Date().toLocaleTimeString([],{hour:"numeric",minute:"2-digit"}),1000);
+function updateDateTime(){
+ const now=new Date();
+ clock.textContent=now.toLocaleTimeString([],{hour:"numeric",minute:"2-digit"});
+ day.textContent=now.toLocaleDateString([],{weekday:"long",month:"short",day:"numeric"});
+}
+updateDateTime();
+setInterval(updateDateTime,1000);
 draw();
 </script>
 </body>
